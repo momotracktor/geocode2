@@ -91,12 +91,12 @@
       };
     };
     //YOUR TURN: add your Mapbox token 
-    mapboxgl.accessToken = 'pk.eyJ1IjoibW9oYW1lZHRyYWNrdG9yIiwiYSI6ImNrandxa3AwODBsYm4ydm1yYnlvNDJkcWEifQ.YR8TKIYcpANn78DFdPVR4w'; //Mapbox token 
+    mapboxgl.accessToken = '<Add your Mapbox token >'; //Mapbox token 
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/streets-v11', //stylesheet location
-      center: [48.856614, 	2.3522219], // starting position
-      zoom: 5,// starting zoom
+      center: [-122.411464, 37.7852299], // starting position
+      zoom: 10,// starting zoom
       transformRequest: transformRequest
     });
 
@@ -104,7 +104,7 @@
       $.ajax({
         type: "GET",
         //YOUR TURN: Replace with csv export link
-        url: 'https://docs.google.com/spreadsheets/d/1TvGeKVrp2wnIAxH0_cV7tJRA94WL44wdIbBgg7fY8pQ/gviz/tq?tqx=out:csv&sheet=geocode',
+        url: '<Replace with csv export link>',
         dataType: "text",
         success: function (csvData) { makeGeoJSON(csvData); }
       });
@@ -113,8 +113,8 @@
 
       function makeGeoJSON(csvData) {
         csv2geojson.csv2geojson(csvData, {
-          latfield: 'latitude',
-          lonfield: 'longitude',
+          latfield: 'Latitude',
+          lonfield: 'Longitude',
           delimiter: ','
         }, function (err, data) {
           map.on('load', function () {
@@ -128,8 +128,8 @@
                 'data': data
               },
               'paint': {
-                'circle-radius': 10,
-                'circle-color': "pink"
+                'circle-radius': 5,
+                'circle-color': "purple"
               }
             });
 
